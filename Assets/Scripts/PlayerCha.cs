@@ -7,6 +7,7 @@ public class PlayerCha : Character
     public List<Transform> bulletTypes;
     public float ph = 3;
     bool hurt;
+    bool die;
 
     private void Update()
     {
@@ -22,13 +23,30 @@ public class PlayerCha : Character
 
         if (collision.tag == "Zombie")
         {
-            ph--;
-            hurt = true;
-            if (ph == 0)
-            {
-                Destroy(gameObject, 0.5f);
-            }
+            Hurt();
         }
+    }
+    void Hurt()
+    {
+        hurt = true;
+        ph--;
+        if (ph < 0)
+        {
+            ph = 0;
+            die = true;
+            Die();
+        }
+    }
+    void Die()
+    {
+        animator.SetBool("Die", die);
+        Invoke("Delay", 2);
+        //Destroy(gameObject, 0.5f);
+    }
+
+    void Delay()
+    {
+        Time.timeScale = 0;//Í£Ö¹ÓÎÏ·
     }
 
 }

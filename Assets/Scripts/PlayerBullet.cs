@@ -8,17 +8,18 @@ public class PlayerBullet : MonoBehaviour
     Rigidbody2D rigid;
     GameObject player;
     public float speed = 7;
+
+    public Transform boom;
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
         player = GameObject.Find("Player");
-        Debug.Log(player);
     }
 
     void Update()
     {
         Move();
-        DelyDestroy();
+        DelayDestroy();
     }
 
     void Move()
@@ -33,9 +34,16 @@ public class PlayerBullet : MonoBehaviour
             vector.x -= speed;
         }
         rigid.velocity = vector;
+
+        rigid.rotation += 5f;
     }
 
-    void DelyDestroy()
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Instantiate(boom, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+    }
+    void DelayDestroy()
     {
         Destroy(gameObject, 0.6f);
     }

@@ -4,9 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - "\u5E73\u53F0"
   - BlueAgentia
   - Zombie
+  - Platform
   layers:
   - Default
   - TransparentFX
@@ -16,11 +16,11 @@ TagManager:
   - UI
   - Enemy
   - Player
-  - BackGroud
+  - 
   - Platform
   - Agentia
-  - 
-  - 
+  - PlayerBullet
+  - BackGround
   - 
   - 
   - 

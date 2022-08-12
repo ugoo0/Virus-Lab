@@ -34,10 +34,7 @@ public class Character : MonoBehaviour
             transform.eulerAngles = new Vector3(transform.rotation.eulerAngles.x, 0, transform.rotation.eulerAngles.z);
         }
 
-        vector = rigd.velocity;
         vector.x = x * speed;
-
-        
 
         if (jump && isGround)
         {
@@ -45,31 +42,29 @@ public class Character : MonoBehaviour
             isGround = false;
         }
 
-        if (!isGround)
-        {
-            vector.y += Physics2D.gravity.y * Time.deltaTime;
-        }
-        else
+        if (isGround)
         {
             vector.y = 0;
         }
+        else
+        {
+            vector.y += Physics2D.gravity.y * Time.deltaTime * 0.7f;
+        }
+
         rigd.velocity = vector;
         UpdateAnim();
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void FixedUpdate()
     {
-        if (collision.name == "Platform")
+        Ray2D ray = new Ray2D(transform.position, Vector2.down);
+        RaycastHit2D hit2D = Physics2D.Raycast(transform.position + new Vector3(0, 0.15f, 0), Vector2.down, 0.16f, LayerMask.GetMask("Platform"));
+        isGround = false;
+        if (Physics2D.Raycast(transform.position + new Vector3(0, 0.15f, 0), Vector2.down, 0.2f, LayerMask.GetMask("Platform")))
         {
             isGround = true;
-        }
-    }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.name == "Platform")
-        {
-            isGround = true;
+            Debug.DrawLine(transform.position + new Vector3(0, 0.15f, 0), transform.position - new Vector3(0, 0.01f, 0), Color.red);
         }
     }
 
@@ -81,10 +76,7 @@ public class Character : MonoBehaviour
             {
                 return;
             }
-            Debug.Log("¹¥»÷1");
             Transform transform = Instantiate(bullets[0], bulletPoint.position, Quaternion.identity);
-            Debug.Log("bullet = " + transform.name);
-
         }
 
         animator.SetBool("HorAttack", attack);

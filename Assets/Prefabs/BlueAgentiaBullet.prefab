@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8307881979837097525}
   - component: {fileID: 8193726448683562129}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,8 +94,8 @@ GameObject:
   - component: {fileID: 8306001431666114965}
   - component: {fileID: 8306001431666114963}
   - component: {fileID: 1209426982158050386}
-  m_Layer: 10
-  m_Name: BlueAgentia
+  m_Layer: 11
+  m_Name: BlueAgentiaBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -175,4 +175,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 531c9d2f969022740b32a739f4a6bd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.3
+  speed: 0.15
+  boom: {fileID: 8692823858013216811, guid: acdab30e20c553646a1746b191ff3232, type: 3}
